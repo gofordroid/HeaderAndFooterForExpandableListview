@@ -7,6 +7,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ExpandableListView;
 
+import com.gofordroid.headerandfooterforexpandablelistview.Model.ChildObject;
+import com.gofordroid.headerandfooterforexpandablelistview.Model.ParentObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class MainActivity extends Activity {
     ExpandableListView elv;
@@ -17,9 +23,8 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         LayoutInflater inflater = getLayoutInflater();
         elv = (ExpandableListView)findViewById(R.id.elv);
-
         elv.setOnGroupExpandListener(onGroupExpandListenser);
-        MyExpandableAdapter adapter = new MyExpandableAdapter(this, SampleData.getData());
+        MyExpandableAdapter adapter = new MyExpandableAdapter(this, getData());
         elv.setAdapter(adapter);
     }
 
@@ -32,6 +37,28 @@ public class MainActivity extends Activity {
             previousGroup = groupPosition;
         }
     };
+
+    public  List<ParentObject> getData()
+    {
+        List<ParentObject> parentObjects = new ArrayList<ParentObject>();
+        for (int i = 0; i<20; i++)
+        {
+            parentObjects.add(new ParentObject("Mother " +i, "Father " +i, "Header " + i, "Footer " +i, getChildren(i)));
+
+        }
+        return parentObjects;
+    }
+
+    private  List<ChildObject> getChildren(int childCount)
+    {
+        List<ChildObject> childObjects = new ArrayList<ChildObject>();
+        for (int i =0; i<childCount; i++)
+        {
+            childObjects.add(new ChildObject("Child " + (i+1), 10 +i ));
+        }
+        return childObjects;
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

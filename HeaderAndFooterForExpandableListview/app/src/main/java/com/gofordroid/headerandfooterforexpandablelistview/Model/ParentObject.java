@@ -20,6 +20,4 @@ public class ParentObject {
         this.textToHeader = textToHeader;
         this.childObjects = childObjects;
     }
-
-
 }

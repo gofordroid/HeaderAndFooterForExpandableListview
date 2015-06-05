@@ -97,7 +97,7 @@ public class MyExpandableAdapter extends BaseExpandableListAdapter {
             TextView txtChildName = (TextView)view.findViewById(R.id.txtChildName);
             TextView txtChildAge = (TextView)view.findViewById(R.id.txtChildAge);
             txtChildName.setText(currentChild.childName);
-            txtChildAge.setText(String.valueOf(currentChild.age));
+            txtChildAge.setText("Age: " + String.valueOf(currentChild.age));
         }
         //the last row is used as footer
         if(childPosition == getChildrenCount(groupPosition)-1)
